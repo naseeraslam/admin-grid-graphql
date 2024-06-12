@@ -1,0 +1,45 @@
+type Query {
+    getFiveTechById(
+        fiveTechId: Int! @doc(description: "Id of FiveTech.")
+    ): [FiveTech]
+    @resolver(class: "FiveTech\\TestAssignment\\Model\\Resolver\\FiveTech\\FindById")
+
+    fiveTechs(
+        filters: FiveTechFilterInput @doc(description: "Identifies which FiveTech filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: FiveTechsortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ): FiveTechs
+    @resolver(class: "\\FiveTech\\TestAssignment\\Model\\Resolver\\FiveTech\\FilterBySearchCriteria") @doc(description: "The FiveTech query searches that match the criteria specified in the search and filter attributes.")
+
+}
+
+type FiveTechs @doc(description: "The collection of FiveTechs that match the conditions defined in the filter.") {
+    items: [FiveTech]! @doc(description: "An array of FiveTechs.")
+    page_info: SearchResultPageInfo @doc(description: "Contains pagination metadata.")
+    total_count: Int @doc(description: "The total count of FiveTechs.")
+}
+
+input FiveTechFilterInput  @doc(description: "FiveTechInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for."){
+    entity_id: FilterEqualTypeInput @deprecated(reason: "Filter FiveTech entity_id")
+    name: FilterMatchTypeInput @deprecated(reason: "Filter FiveTech name")
+    description: FilterMatchTypeInput @deprecated(reason: "Filter FiveTech description")
+    country: FilterMatchTypeInput @deprecated(reason: "Filter FiveTech country")
+    created_at: FilterMatchTypeInput @deprecated(reason: "Filter FiveTech created_at")
+    updated_at: FilterMatchTypeInput @deprecated(reason: "Filter FiveTech updated_at")
+}
+
+input FiveTechsortInput  @doc(description: "FiveTechsortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order.")
+{
+    entity_id: SortEnum @deprecated(reason: "Filter FiveTech FiveTech_id")
+    search_page: SortEnum @deprecated(reason: "Filter FiveTech search_page")
+}
+
+type FiveTech {
+    entity_id: Int!
+    name: String
+    description: String
+    country: String
+    created_at: String
+    updated_at: String
+}

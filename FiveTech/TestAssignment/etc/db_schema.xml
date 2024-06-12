@@ -1,0 +1,18 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="five_tech" resource="default" engine="innodb"
+           comment="five_tech Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column name="name" nullable="true" xsi:type="varchar" comment="name" length="255"/>
+        <column name="description" nullable="true" xsi:type="varchar" comment="description" length="255"/>
+        <column name="country" nullable="true" xsi:type="varchar" comment="country" length="255"/>
+        <column name="created_at" nullable="true" xsi:type="timestamp" comment="created_at"
+                default="CURRENT_TIMESTAMP"/>
+        <column name="updated_at" nullable="true" xsi:type="timestamp" comment="updated_at" default="CURRENT_TIMESTAMP"
+                on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

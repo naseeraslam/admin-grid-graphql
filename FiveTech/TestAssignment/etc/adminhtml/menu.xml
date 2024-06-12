@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="FiveTech_TestAssignment::FiveTechs" title="FiveTech Record"
+             module="FiveTech_TestAssignment" sortOrder="9999" resource="FiveTech_TestAssignment::FiveTechs"
+             parent="Magento_Backend::marketing_communications"  action="five_tech/record/index"/>
+    </menu>
+</config>
